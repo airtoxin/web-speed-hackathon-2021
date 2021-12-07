@@ -2,7 +2,9 @@
   "private": true,
   "license": "MPL-2.0",
   "scripts": {
-    "build": "yarn workspaces run build",
+    "build": "run-p build:*",
+    "build:image": "babel-node scripts/compress-images.js",
+    "build:workspaces": "yarn workspaces run build",
     "start": "yarn workspace @web-speed-hackathon-2021/server start",
     "dev": "run-p --print-label start dev:client",
     "dev:client": "yarn workspace @web-speed-hackathon-2021/client develop",
@@ -16,6 +18,7 @@
     "node": "16.x.x"
   },
   "devDependencies": {
+    "@babel/node": "7.16.0",
     "npm-run-all": "4.1.5",
     "prettier": "2.5.1"
   }
