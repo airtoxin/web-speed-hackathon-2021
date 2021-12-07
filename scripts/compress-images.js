@@ -1,6 +1,6 @@
 import fs from "fs";
 import path from "path";
-import sharp from "sharp";
+import { convertImage } from "../server/src/converters/convert_image";
 
 const main = async (target = path.join(__dirname, "../public/images")) => {
   const filenames = fs.readdirSync(target);
@@ -11,9 +11,8 @@ const main = async (target = path.join(__dirname, "../public/images")) => {
     if (fs.statSync(filepath).isDirectory()) {
       await main(filepath);
     } else {
-      await sharp(fs.readFileSync(filepath))
-        .jpeg({ mozjpeg: true })
-        .toFile(`${filepath}.optimized.jpg`);
+      const converted = await convertImage(fs.readFileSync(filepath), {});
+      await fs.writeFileSync(`${filepath}.optimized.jpg`, converted);
     }
   }
 };
