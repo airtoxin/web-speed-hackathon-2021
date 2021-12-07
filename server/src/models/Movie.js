@@ -1,6 +1,6 @@
-import { DataTypes, Sequelize } from 'sequelize';
+import { DataTypes, Sequelize } from "sequelize";
 
-import { sequelize } from '../sequelize';
+import { sequelize } from "../sequelize";
 
 /**
  * @typedef {object} MovieAttributes
@@ -12,7 +12,7 @@ import { sequelize } from '../sequelize';
  */
 
 /** @type {import('sequelize').ModelCtor<MovieModel>} */
-const Movie = sequelize.define('Movie', {
+const Movie = sequelize.define("Movie", {
   id: {
     allowNull: false,
     defaultValue: Sequelize.UUIDV4,

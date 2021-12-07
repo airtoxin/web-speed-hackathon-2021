@@ -1,11 +1,11 @@
-import Router from 'express-promise-router';
-import httpErrors from 'http-errors';
+import Router from "express-promise-router";
+import httpErrors from "http-errors";
 
-import { Post, User } from '../../models';
+import { Post, User } from "../../models";
 
 const router = Router();
 
-router.get('/me', async (req, res) => {
+router.get("/me", async (req, res) => {
   if (req.session.userId === undefined) {
     throw new httpErrors.Unauthorized();
   }
@@ -15,10 +15,10 @@ router.get('/me', async (req, res) => {
     throw new httpErrors.NotFound();
   }
 
-  return res.status(200).type('application/json').send(user);
+  return res.status(200).type("application/json").send(user);
 });
 
-router.put('/me', async (req, res) => {
+router.put("/me", async (req, res) => {
   if (req.session.userId === undefined) {
     throw new httpErrors.Unauthorized();
   }
@@ -31,10 +31,10 @@ router.put('/me', async (req, res) => {
   Object.assign(user, req.body);
   await user.save();
 
-  return res.status(200).type('application/json').send(user);
+  return res.status(200).type("application/json").send(user);
 });
 
-router.get('/users/:username', async (req, res) => {
+router.get("/users/:username", async (req, res) => {
   const user = await User.findOne({
     where: {
       username: req.params.username,
@@ -45,10 +45,10 @@ router.get('/users/:username', async (req, res) => {
     throw new httpErrors.NotFound();
   }
 
-  return res.status(200).type('application/json').send(user);
+  return res.status(200).type("application/json").send(user);
 });
 
-router.get('/users/:username/posts', async (req, res) => {
+router.get("/users/:username/posts", async (req, res) => {
   const user = await User.findOne({
     where: {
       username: req.params.username,
@@ -62,13 +62,13 @@ router.get('/users/:username/posts', async (req, res) => {
   const posts = await Post.findAll({
     limit: req.query.limit,
     offset: req.query.offset,
-    order: [['id', 'DESC']],
+    order: [["id", "DESC"]],
     where: {
       userId: user.id,
     },
   });
 
-  return res.status(200).type('application/json').send(posts);
+  return res.status(200).type("application/json").send(posts);
 });
 
 export { router as userRouter };

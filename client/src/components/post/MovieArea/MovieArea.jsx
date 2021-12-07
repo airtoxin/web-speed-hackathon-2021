@@ -1,7 +1,7 @@
-import React from 'react';
+import React from "react";
 
-import { getMoviePath } from '../../../utils/get_path';
-import { PausableMovie } from '../../foundation/PausableMovie';
+import { getMoviePath } from "../../../utils/get_path";
+import { PausableMovie } from "../../foundation/PausableMovie";
 
 /**
  * @typedef {object} Props

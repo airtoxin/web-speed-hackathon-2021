@@ -1,11 +1,11 @@
-import { DataTypes } from 'sequelize';
+import { DataTypes } from "sequelize";
 
-import { sequelize } from '../sequelize';
+import { sequelize } from "../sequelize";
 
-import { Image } from './Image';
-import { Post } from './Post';
+import { Image } from "./Image";
+import { Post } from "./Post";
 
-const PostsImagesRelation = sequelize.define('PostsImagesRelation', {
+const PostsImagesRelation = sequelize.define("PostsImagesRelation", {
   imageId: {
     references: {
       model: Image,

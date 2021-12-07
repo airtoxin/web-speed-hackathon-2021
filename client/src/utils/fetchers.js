@@ -1,4 +1,4 @@
-import { gzip } from 'pako';
+import { gzip } from "pako";
 
 /**
  * @param {string} url
@@ -7,9 +7,9 @@ import { gzip } from 'pako';
 async function fetchBinary(url) {
   const result = await $.ajax({
     async: false,
-    dataType: 'binary',
-    method: 'GET',
-    responseType: 'arraybuffer',
+    dataType: "binary",
+    method: "GET",
+    responseType: "arraybuffer",
     url,
   });
   return result;
@@ -23,8 +23,8 @@ async function fetchBinary(url) {
 async function fetchJSON(url) {
   const result = await $.ajax({
     async: false,
-    dataType: 'json',
-    method: 'GET',
+    dataType: "json",
+    method: "GET",
     url,
   });
   return result;
@@ -40,11 +40,11 @@ async function sendFile(url, file) {
   const result = await $.ajax({
     async: false,
     data: file,
-    dataType: 'json',
+    dataType: "json",
     headers: {
-      'Content-Type': 'application/octet-stream',
+      "Content-Type": "application/octet-stream",
     },
-    method: 'POST',
+    method: "POST",
     processData: false,
     url,
   });
@@ -65,12 +65,12 @@ async function sendJSON(url, data) {
   const result = await $.ajax({
     async: false,
     data: compressed,
-    dataType: 'json',
+    dataType: "json",
     headers: {
-      'Content-Encoding': 'gzip',
-      'Content-Type': 'application/json',
+      "Content-Encoding": "gzip",
+      "Content-Type": "application/json",
     },
-    method: 'POST',
+    method: "POST",
     processData: false,
     url,
   });

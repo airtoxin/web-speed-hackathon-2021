@@ -1,75 +1,84 @@
-import { Comment } from './Comment';
-import { Image } from './Image';
-import { Movie } from './Movie';
-import { Post } from './Post';
-import { PostsImagesRelation } from './PostsImagesRelation';
-import { ProfileImage } from './ProfileImage';
-import { Sound } from './Sound';
-import { User } from './User';
+import { Comment } from "./Comment";
+import { Image } from "./Image";
+import { Movie } from "./Movie";
+import { Post } from "./Post";
+import { PostsImagesRelation } from "./PostsImagesRelation";
+import { ProfileImage } from "./ProfileImage";
+import { Sound } from "./Sound";
+import { User } from "./User";
 
 User.hasMany(Post, {
-  as: 'posts',
+  as: "posts",
   foreignKey: {
     allowNull: false,
-    name: 'userId',
+    name: "userId",
   },
 });
 Post.belongsTo(User, {
-  as: 'user',
+  as: "user",
   foreignKey: {
     allowNull: false,
-    name: 'userId',
+    name: "userId",
   },
 });
 
 User.belongsTo(ProfileImage, {
-  as: 'profileImage',
+  as: "profileImage",
   foreignKey: {
     allowNull: false,
-    defaultValue: '396fe4ce-aa36-4d96-b54e-6db40bae2eed',
+    defaultValue: "396fe4ce-aa36-4d96-b54e-6db40bae2eed",
   },
 });
 
 Post.belongsToMany(Image, {
-  as: 'images',
+  as: "images",
   foreignKey: {
-    name: 'postId',
+    name: "postId",
   },
   otherKey: {
-    name: 'imageId',
+    name: "imageId",
   },
   through: PostsImagesRelation,
 });
 
 Post.belongsTo(Movie, {
-  as: 'movie',
+  as: "movie",
 });
 
 Post.belongsTo(Sound, {
-  as: 'sound',
+  as: "sound",
 });
 
 Post.hasMany(Comment, {
-  as: 'comments',
+  as: "comments",
   foreignKey: {
     allowNull: false,
-    name: 'postId',
+    name: "postId",
   },
 });
 Comment.belongsTo(Post, {
-  as: 'post',
+  as: "post",
   foreignKey: {
     allowNull: false,
-    name: 'postId',
+    name: "postId",
   },
 });
 
 Comment.belongsTo(User, {
-  as: 'user',
+  as: "user",
   foreignKey: {
     allowNull: false,
-    name: 'userId',
+    name: "userId",
   },
 });
 
-export { User, Post, Image, Movie, Sound, Comment, ProfileImage, PostsImagesRelation };
+export {
+  User,
+  Post,
+  Image,
+  Movie,
+  Sound,
+  Comment,
+  ProfileImage,
+  PostsImagesRelation,
+};

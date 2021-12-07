@@ -1,7 +1,7 @@
-import React from 'react';
-import { Helmet } from 'react-helmet';
+import React from "react";
+import { Helmet } from "react-helmet";
 
-import { TermPage } from '../../components/term/TermPage';
+import { TermPage } from "../../components/term/TermPage";
 
 /** @type {React.VFC} */
 const TermContainer = () => {

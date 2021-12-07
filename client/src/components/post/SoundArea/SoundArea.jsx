@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 
-import { SoundPlayer } from '../../foundation/SoundPlayer';
+import { SoundPlayer } from "../../foundation/SoundPlayer";
 
 /**
  * @typedef {object} Props

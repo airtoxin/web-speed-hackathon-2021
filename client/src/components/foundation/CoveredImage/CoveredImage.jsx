@@ -1,9 +1,9 @@
-import classNames from 'classnames';
-import sizeOf from 'image-size';
-import React from 'react';
+import classNames from "classnames";
+import sizeOf from "image-size";
+import React from "react";
 
-import { useFetch } from '../../../hooks/use_fetch';
-import { fetchBinary } from '../../../utils/fetchers';
+import { useFetch } from "../../../hooks/use_fetch";
+import { fetchBinary } from "../../../utils/fetchers";
 
 /**
  * @typedef {object} Props
@@ -26,7 +26,10 @@ const CoveredImage = ({ alt, src }) => {
     return data !== null ? URL.createObjectURL(new Blob([data])) : null;
   }, [data]);
 
-  const [containerSize, setContainerSize] = React.useState({ height: 0, width: 0 });
+  const [containerSize, setContainerSize] = React.useState({
+    height: 0,
+    width: 0,
+  });
   /** @type {React.RefCallback<HTMLDivElement>} */
   const callbackRef = React.useCallback((el) => {
     setContainerSize({
@@ -46,10 +49,13 @@ const CoveredImage = ({ alt, src }) => {
     <div ref={callbackRef} className="relative w-full h-full overflow-hidden">
       <img
         alt={alt}
-        className={classNames('absolute left-1/2 top-1/2 max-w-none transform -translate-x-1/2 -translate-y-1/2', {
-          'w-auto h-full': containerRatio > imageRatio,
-          'w-full h-auto': containerRatio <= imageRatio,
-        })}
+        className={classNames(
+          "absolute left-1/2 top-1/2 max-w-none transform -translate-x-1/2 -translate-y-1/2",
+          {
+            "w-auto h-full": containerRatio > imageRatio,
+            "w-full h-auto": containerRatio <= imageRatio,
+          }
+        )}
         src={blobUrl}
       />
     </div>

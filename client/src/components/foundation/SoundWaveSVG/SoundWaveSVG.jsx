@@ -1,5 +1,5 @@
-import _ from 'lodash';
-import React from 'react';
+import _ from "lodash";
+import React from "react";
 
 /**
  * @param {ArrayBuffer} data
@@ -49,11 +49,22 @@ const SoundWaveSVG = ({ soundData }) => {
   }, [soundData]);
 
   return (
-    <svg className="w-full h-full" preserveAspectRatio="none" viewBox="0 0 100 1">
+    <svg
+      className="w-full h-full"
+      preserveAspectRatio="none"
+      viewBox="0 0 100 1"
+    >
       {peaks.map((peak, idx) => {
         const ratio = peak / max;
         return (
-          <rect key={`${uniqueIdRef.current}#${idx}`} fill="#2563EB" height={ratio} width="1" x={idx} y={1 - ratio} />
+          <rect
+            key={`${uniqueIdRef.current}#${idx}`}
+            fill="#2563EB"
+            height={ratio}
+            width="1"
+            x={idx}
+            y={1 - ratio}
+          />
         );
       })}
     </svg>

@@ -1,14 +1,14 @@
-import Router from 'express-promise-router';
-import httpErrors from 'http-errors';
-import { ValidationError } from 'sequelize';
+import Router from "express-promise-router";
+import httpErrors from "http-errors";
+import { ValidationError } from "sequelize";
 
-import { authRouter } from './api/auth';
-import { imageRouter } from './api/image';
-import { initializeRouter } from './api/initialize';
-import { movieRouter } from './api/movie';
-import { postRouter } from './api/post';
-import { soundRouter } from './api/sound';
-import { userRouter } from './api/user';
+import { authRouter } from "./api/auth";
+import { imageRouter } from "./api/image";
+import { initializeRouter } from "./api/initialize";
+import { movieRouter } from "./api/movie";
+import { postRouter } from "./api/post";
+import { soundRouter } from "./api/sound";
+import { userRouter } from "./api/user";
 
 const router = Router();
 
@@ -28,13 +28,13 @@ router.use(async (err, _req, _res, _next) => {
 });
 
 router.use(async (err, _req, res, _next) => {
-  if (!('status' in err) || err.status === 500) {
+  if (!("status" in err) || err.status === 500) {
     console.error(err);
   }
 
   return res
     .status(err.status || 500)
-    .type('application/json')
+    .type("application/json")
     .send({
       message: err.message,
     });

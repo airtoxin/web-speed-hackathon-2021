@@ -1,11 +1,11 @@
-import moment from 'moment';
-import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import moment from "moment";
+import React from "react";
+import { Link, useNavigate } from "react-router-dom";
 
-import { getProfileImagePath } from '../../../utils/get_path';
-import { ImageArea } from '../../post/ImageArea';
-import { MovieArea } from '../../post/MovieArea';
-import { SoundArea } from '../../post/SoundArea';
+import { getProfileImagePath } from "../../../utils/get_path";
+import { ImageArea } from "../../post/ImageArea";
+import { MovieArea } from "../../post/MovieArea";
+import { SoundArea } from "../../post/SoundArea";
 
 /**
  * @param {Element} target
@@ -15,7 +15,7 @@ import { SoundArea } from '../../post/SoundArea';
 const isClickedAnchorOrButton = (target, currentTarget) => {
   while (target !== null) {
     const tagName = target.tagName.toLowerCase();
-    if (['button', 'a'].includes(tagName)) {
+    if (["button", "a"].includes(tagName)) {
       return true;
     }
     if (currentTarget === target) {
@@ -42,11 +42,14 @@ const TimelineItem = ({ post }) => {
   const handleClick = React.useCallback(
     (ev) => {
       const isSelectedText = document.getSelection().isCollapsed === false;
-      if (!isClickedAnchorOrButton(ev.target, ev.currentTarget) && !isSelectedText) {
+      if (
+        !isClickedAnchorOrButton(ev.target, ev.currentTarget) &&
+        !isSelectedText
+      ) {
         navigate(`/posts/${post.id}`);
       }
     },
-    [post, navigate],
+    [post, navigate]
   );
 
   return (
@@ -57,21 +60,33 @@ const TimelineItem = ({ post }) => {
             className="block w-12 h-12 bg-gray-300 border border-gray-300 rounded-full hover:opacity-75 overflow-hidden sm:w-16 sm:h-16"
             to={`/users/${post.user.username}`}
           >
-            <img alt={post.user.profileImage.alt} src={getProfileImagePath(post.user.profileImage.id)} />
+            <img
+              alt={post.user.profileImage.alt}
+              src={getProfileImagePath(post.user.profileImage.id)}
+            />
           </Link>
         </div>
         <div className="flex-grow flex-shrink min-w-0">
           <p className="whitespace-nowrap text-sm overflow-hidden overflow-ellipsis">
-            <Link className="pr-1 text-gray-800 hover:underline font-bold" to={`/users/${post.user.username}`}>
+            <Link
+              className="pr-1 text-gray-800 hover:underline font-bold"
+              to={`/users/${post.user.username}`}
+            >
               {post.user.name}
             </Link>
-            <Link className="pr-1 text-gray-500 hover:underline" to={`/users/${post.user.username}`}>
+            <Link
+              className="pr-1 text-gray-500 hover:underline"
+              to={`/users/${post.user.username}`}
+            >
               @{post.user.username}
             </Link>
             <span className="pr-1 text-gray-500">-</span>
-            <Link className="pr-1 text-gray-500 hover:underline" to={`/posts/${post.id}`}>
+            <Link
+              className="pr-1 text-gray-500 hover:underline"
+              to={`/posts/${post.id}`}
+            >
               <time dateTime={moment(post.createdAt).toISOString()}>
-                {moment(post.createdAt).locale('ja').format('LL')}
+                {moment(post.createdAt).locale("ja").format("LL")}
               </time>
             </Link>
           </p>

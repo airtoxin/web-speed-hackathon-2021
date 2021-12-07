@@ -1,7 +1,7 @@
-import bcrypt from 'bcrypt';
-import { DataTypes, Sequelize } from 'sequelize';
+import bcrypt from "bcrypt";
+import { DataTypes, Sequelize } from "sequelize";
 
-import { sequelize } from '../sequelize';
+import { sequelize } from "../sequelize";
 
 /**
  * @typedef {object} UserAttributes
@@ -26,11 +26,11 @@ import { sequelize } from '../sequelize';
 
 /** @type {import('sequelize').ModelCtor<UserModel>} */
 const User = sequelize.define(
-  'User',
+  "User",
   {
     description: {
       allowNull: false,
-      defaultValue: '',
+      defaultValue: "",
       type: DataTypes.STRING,
     },
     id: {
@@ -49,7 +49,7 @@ const User = sequelize.define(
         return undefined;
       },
       set(value) {
-        this.setDataValue('password', this.generateHash(value));
+        this.setDataValue("password", this.generateHash(value));
       },
       type: DataTypes.STRING,
     },
@@ -64,10 +64,10 @@ const User = sequelize.define(
   },
   {
     defaultScope: {
-      attributes: { exclude: ['profileImageId'] },
-      include: { association: 'profileImage' },
+      attributes: { exclude: ["profileImageId"] },
+      include: { association: "profileImage" },
     },
-  },
+  }
 );
 
 Object.assign(User.prototype, {
@@ -75,7 +75,7 @@ Object.assign(User.prototype, {
     return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
   },
   validPassword(password) {
-    return bcrypt.compareSync(password, this.getDataValue('password'));
+    return bcrypt.compareSync(password, this.getDataValue("password"));
   },
 });
 
