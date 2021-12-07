@@ -3,7 +3,9 @@
   "license": "MPL-2.0",
   "scripts": {
     "build": "yarn workspaces run build",
-    "start": "yarn workspace @web-speed-hackathon-2021/server start"
+    "start": "yarn workspace @web-speed-hackathon-2021/server start",
+    "dev": "run-p --print-label start dev:client",
+    "dev:client": "yarn workspace @web-speed-hackathon-2021/client develop"
   },
   "workspaces": [
     "client",
@@ -11,5 +13,8 @@
   ],
   "engines": {
     "node": "16.x.x"
+  },
+  "devDependencies": {
+    "npm-run-all": "^4.1.5"
   }
 }
