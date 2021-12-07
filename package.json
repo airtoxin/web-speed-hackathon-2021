@@ -4,6 +4,7 @@
   "scripts": {
     "build": "run-p build:*",
     "build:image": "babel-node scripts/compress-images.js",
+    "build:movie": "babel-node scripts/compress-movies.js",
     "build:workspaces": "yarn workspaces run build",
     "start": "yarn workspace @web-speed-hackathon-2021/server start",
     "dev": "run-p --print-label start dev:client",

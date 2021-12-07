@@ -3,20 +3,17 @@ import { ffmpeg } from "../ffmpeg";
 /**
  * 先頭 5 秒のみ、正方形にくり抜かれた無音動画を作成します
  * @param {Buffer} buffer
- * @param {object} options
- * @param {number} [options.extension]
- * @param {number} [options.size]
  * @returns {Promise<Uint8Array>}
  */
-async function convertMovie(buffer, options) {
+async function convertMovie(buffer) {
   const cropOptions = [
     "'min(iw,ih)':'min(iw,ih)'",
-    options.size ? `scale=${options.size}:${options.size}` : undefined,
+    `scale=108:108`,
   ]
     .filter(Boolean)
     .join(",");
 
-  const exportFile = `export.${options.extension ?? "gif"}`;
+  const exportFile = `export.gif`;
 
   if (ffmpeg.isLoaded() === false) {
     await ffmpeg.load();
@@ -31,7 +28,7 @@ async function convertMovie(buffer, options) {
       "-t",
       "5",
       "-r",
-      "10",
+      "1",
       "-vf",
       `crop=${cropOptions}`,
       "-an",
