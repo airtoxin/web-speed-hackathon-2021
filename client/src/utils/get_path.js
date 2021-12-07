@@ -19,7 +19,7 @@ function getMoviePath(movieId) {
  * @returns {string}
  */
 function getSoundPath(soundId) {
-  return `/sounds/${soundId}.mp3`;
+  return `/sounds/${soundId}.mp3.optimized.mp3`;
 }
 
 /**
@@ -27,7 +27,7 @@ function getSoundPath(soundId) {
  * @returns {string}
  */
 function getProfileImagePath(profileImageId) {
-  return `/images/profiles/${profileImageId}.jpg`;
+  return `/images/profiles/${profileImageId}.jpg.optimized.jpg`;
 }
 
 export { getImagePath, getMoviePath, getSoundPath, getProfileImagePath };

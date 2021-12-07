@@ -26,10 +26,7 @@ router.post("/sounds", async (req, res) => {
 
   const { artist, title } = await extractMetadataFromSound(req.body);
 
-  const converted = await convertSound(req.body, {
-    // 音声の拡張子を指定する
-    extension: EXTENSION,
-  });
+  const converted = await convertSound(req.body);
 
   const filePath = path.resolve(
     UPLOAD_PATH,
