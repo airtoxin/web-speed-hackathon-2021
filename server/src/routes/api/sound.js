@@ -9,9 +9,6 @@ import { convertSound } from "../../converters/convert_sound";
 import { UPLOAD_PATH } from "../../paths";
 import { extractMetadataFromSound } from "../../utils/extract_metadata_from_sound";
 
-// 変換した音声の拡張子
-const EXTENSION = "mp3";
-
 const router = Router();
 
 router.post("/sounds", async (req, res) => {
@@ -30,7 +27,7 @@ router.post("/sounds", async (req, res) => {
 
   const filePath = path.resolve(
     UPLOAD_PATH,
-    `./sounds/${soundId}.${EXTENSION}`
+    `./sounds/${soundId}.mp3.optimized.mp3`
   );
   await fs.writeFile(filePath, converted);
 

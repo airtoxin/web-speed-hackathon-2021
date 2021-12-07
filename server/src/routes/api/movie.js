@@ -24,7 +24,7 @@ router.post("/movies", async (req, res) => {
 
   const filePath = path.resolve(
     UPLOAD_PATH,
-    `./movies/${movieId}.gif`
+    `./movies/${movieId}.gif.optimized.gif`
   );
   await fs.writeFile(filePath, converted);
 
