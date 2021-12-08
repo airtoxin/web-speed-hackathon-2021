@@ -1,6 +1,9 @@
 import fs from "fs";
 import path from "path";
-import { convertSound } from "../server/src/converters/convert_sound";
+import {
+  calculatePeaks,
+  convertSound,
+} from "../server/src/converters/convert_sound";
 
 const main = async (target = path.join(__dirname, "../public/sounds")) => {
   const filenames = fs.readdirSync(target);
@@ -12,7 +15,13 @@ const main = async (target = path.join(__dirname, "../public/sounds")) => {
       await main(filepath);
     } else {
       const converted = await convertSound(fs.readFileSync(filepath));
+      const peaks = await calculatePeaks(converted.buffer);
       await fs.writeFileSync(`${filepath}.optimized.mp3`, converted);
+      await fs.writeFileSync(
+        `${filepath}.optimized.mp3.json`,
+        JSON.stringify(peaks),
+        "utf8"
+      );
     }
   }
 };
