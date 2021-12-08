@@ -14,8 +14,9 @@ const main = async (target = path.join(__dirname, "../public/sounds")) => {
     if (fs.statSync(filepath).isDirectory()) {
       await main(filepath);
     } else {
+      const fileBuffer = fs.readFileSync(filepath);
       const converted = await convertSound(fs.readFileSync(filepath));
-      const peaks = await calculatePeaks(converted.buffer);
+      const peaks = await calculatePeaks(fileBuffer.buffer);
       await fs.writeFileSync(`${filepath}.optimized.mp3`, converted);
       await fs.writeFileSync(
         `${filepath}.optimized.mp3.json`,
