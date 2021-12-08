@@ -53,8 +53,10 @@ const SoundPlayer = ({ sound }) => {
         ref={audioRef}
         loop={true}
         onTimeUpdate={handleTimeUpdate}
-        src={blobUrl}
-      />
+        preload="none"
+      >
+        <source src={blobUrl} type="audio/mp3" />
+      </audio>
       <div className="p-2">
         <button
           className="flex items-center justify-center w-8 h-8 text-white text-sm bg-blue-600 rounded-full hover:opacity-75"

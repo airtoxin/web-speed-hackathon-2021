@@ -57,6 +57,8 @@ const CoveredImage = ({ alt, src }) => {
           }
         )}
         src={blobUrl}
+        loading="lazy"
+        decoding="async"
       />
     </div>
   );
