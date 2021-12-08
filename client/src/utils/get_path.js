@@ -38,4 +38,10 @@ function getProfileImagePath(profileImageId) {
   return `/images/profiles/${profileImageId}.jpg.optimized.jpg`;
 }
 
-export { getImagePath, getMoviePath, getSoundPath, getSoundPeaksPath, getProfileImagePath };
+export {
+  getImagePath,
+  getMoviePath,
+  getSoundPath,
+  getSoundPeaksPath,
+  getProfileImagePath,
+};

@@ -1,7 +1,7 @@
 import React from "react";
-import {useFetch} from "../../../hooks/use_fetch"
-import {getSoundPeaksPath} from "../../../utils/get_path"
-import {fetchJSON} from "../../../utils/fetchers"
+import { useFetch } from "../../../hooks/use_fetch";
+import { getSoundPeaksPath } from "../../../utils/get_path";
+import { fetchJSON } from "../../../utils/fetchers";
 
 /**
  * @typedef {object} Props

@@ -19,7 +19,7 @@ import { FontAwesomeIcon } from "../FontAwesomeIcon";
  */
 const PausableMovie = ({ src }) => {
   const [isPlaying, setIsPlaying] = React.useState(false);
-  const handleClick = React.useCallback(() => setIsPlaying(p => !p), []);
+  const handleClick = React.useCallback(() => setIsPlaying((p) => !p), []);
   const videoRef = React.useRef(null);
   React.useEffect(() => {
     if (isPlaying) {
