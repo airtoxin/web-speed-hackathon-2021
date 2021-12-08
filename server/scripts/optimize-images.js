@@ -14,16 +14,21 @@ const main = async () => {
 
 const compressFiles = async (target, options = {}) => {
   const filenames = fs.readdirSync(target);
+  const outDir = `${target}_optimized`;
+
+  if (!fs.existsSync(outDir)) {
+    fs.mkdirSync(outDir);
+  }
+
   await Promise.all(
     filenames.map(async (filename) => {
       if (!filename.endsWith(".jpg")) return;
-      if (filename.endsWith(".optimized.jpg")) return;
 
       const filepath = path.join(target, filename);
 
       console.log(`Process ${filename}`);
       const converted = await convertImage(fs.readFileSync(filepath), options);
-      await fs.writeFileSync(`${filepath}.optimized.jpg`, converted);
+      await fs.writeFileSync(path.join(outDir, filename), converted);
     })
   );
 };

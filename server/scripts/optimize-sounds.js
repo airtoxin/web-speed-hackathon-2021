@@ -4,9 +4,14 @@ import { calculatePeaks, convertSound } from "../src/converters/convert_sound";
 
 const main = async (target = path.join(__dirname, "../../public/sounds")) => {
   const filenames = fs.readdirSync(target);
+  const outDir = `${target}_optimized`;
+
+  if (!fs.existsSync(outDir)) {
+    fs.mkdirSync(outDir);
+  }
+
   for (const filename of filenames) {
     if (!filename.endsWith(".mp3")) continue;
-    if (filename.endsWith(".optimized.mp3")) continue;
 
     const filepath = path.join(target, filename);
     const fileBuffer = fs.readFileSync(filepath);
@@ -14,9 +19,9 @@ const main = async (target = path.join(__dirname, "../../public/sounds")) => {
     console.log(`Process ${filename}`);
     const converted = await convertSound(fileBuffer);
     const peaks = await calculatePeaks(fileBuffer.buffer);
-    await fs.writeFileSync(`${filepath}.optimized.mp3`, converted);
+    await fs.writeFileSync(path.join(outDir, filename), converted);
     await fs.writeFileSync(
-      `${filepath}.optimized.json`,
+      `${path.join(outDir, filename)}.json`,
       JSON.stringify(peaks),
       "utf8"
     );
