@@ -1,19 +1,14 @@
 import { ffmpeg } from "../ffmpeg";
 
+const FRAME_RATE = 5;
+
 /**
  * 先頭 5 秒のみ、正方形にくり抜かれた無音動画を作成します
  * @param {Buffer} buffer
  * @returns {Promise<Uint8Array>}
  */
 async function convertMovie(buffer) {
-  const cropOptions = [
-    "'min(iw,ih)':'min(iw,ih)'",
-    `scale=108:108`,
-  ]
-    .filter(Boolean)
-    .join(",");
-
-  const exportFile = `export.gif`;
+  const exportFile = `export.webm`;
 
   if (ffmpeg.isLoaded() === false) {
     await ffmpeg.load();
@@ -25,12 +20,16 @@ async function convertMovie(buffer) {
     ...[
       "-i",
       "file",
+      "-c:v",
+      "libvpx-vp9",
+      "-cpu-used",
+      "5",
+      "-crf",
+      "51",
       "-t",
       "5",
-      "-r",
-      "1",
       "-vf",
-      `crop=${cropOptions}`,
+      "crop='min(iw,ih)':'min(iw,ih)',scale=600:600",
       "-an",
       exportFile,
     ]
