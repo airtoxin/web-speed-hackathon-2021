@@ -1,3 +1,4 @@
+.gitignore
 /public/images/
 /public/movies/
 /public/sounds/
