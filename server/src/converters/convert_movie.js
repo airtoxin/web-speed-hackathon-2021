@@ -1,7 +1,5 @@
 import { ffmpeg } from "../ffmpeg";
 
-const FRAME_RATE = 5;
-
 /**
  * 先頭 5 秒のみ、正方形にくり抜かれた無音動画を作成します
  * @param {Buffer} buffer
