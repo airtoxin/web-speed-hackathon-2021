@@ -8,9 +8,6 @@ import { v4 as uuidv4 } from "uuid";
 import { convertImage } from "../../converters/convert_image";
 import { UPLOAD_PATH } from "../../paths";
 
-// 変換した画像の拡張子
-const EXTENSION = "jpg";
-
 const router = Router();
 
 router.post("/images", async (req, res) => {
@@ -24,8 +21,6 @@ router.post("/images", async (req, res) => {
   const imageId = uuidv4();
 
   const converted = await convertImage(req.body, {
-    // 画像の拡張子を指定する
-    extension: EXTENSION,
     // 画像の縦サイズを指定する (undefined は元画像に合わせる)
     height: undefined,
     // 画像の横サイズを指定する (undefined は元画像に合わせる)
@@ -34,7 +29,7 @@ router.post("/images", async (req, res) => {
 
   const filePath = path.resolve(
     UPLOAD_PATH,
-    `./images/${imageId}.${EXTENSION}`
+    `./images_optimized/${imageId}.jpg`
   );
   await fs.writeFile(filePath, converted);
 

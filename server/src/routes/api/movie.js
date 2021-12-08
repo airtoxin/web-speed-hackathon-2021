@@ -23,16 +23,11 @@ router.post("/movies", async (req, res) => {
 
   const movieId = uuidv4();
 
-  const converted = await convertMovie(req.body, {
-    // 動画の拡張子を指定する
-    extension: EXTENSION,
-    // 動画の縦横サイズを指定する (undefined は元動画に合わせる)
-    size: undefined,
-  });
+  const converted = await convertMovie(req.body);
 
   const filePath = path.resolve(
     UPLOAD_PATH,
-    `./movies/${movieId}.${EXTENSION}`
+    `./movies_optimized/${movieId}.gif.optimized.gif`
   );
   await fs.writeFile(filePath, converted);
 

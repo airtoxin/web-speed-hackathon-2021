@@ -5,7 +5,8 @@
     "build": "run-p build:*",
     "build:workspaces": "yarn workspaces run build",
     "start": "yarn workspace @web-speed-hackathon-2021/server start",
-    "dev": "run-p --print-label start dev:client",
+    "dev": "run-p --print-label dev:*",
+    "dev:server": "yarn workspace @web-speed-hackathon-2021/server develop",
     "dev:client": "yarn workspace @web-speed-hackathon-2021/client develop",
     "format": "prettier --ignore-path .gitignore --write ."
   },

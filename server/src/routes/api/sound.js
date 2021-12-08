@@ -30,11 +30,11 @@ router.post("/sounds", async (req, res) => {
   const peaks = await calculatePeaks(converted.buffer);
 
   await fs.writeFile(
-    path.resolve(UPLOAD_PATH, `./sounds/${soundId}.mp3.optimized.mp3`),
+    path.resolve(UPLOAD_PATH, `./sounds_optimized/${soundId}.mp3`),
     converted
   );
   await fs.writeFile(
-    path.resolve(UPLOAD_PATH, `./sounds/${soundId}.mp3.optimized.json`),
+    path.resolve(UPLOAD_PATH, `./sounds_optimized/${soundId}.mp3.json`),
     JSON.stringify(peaks),
     "utf8"
   );

@@ -5,6 +5,7 @@
   "license": "MPL-2.0",
   "main": "src/index.js",
   "scripts": {
+    "develop": "babel-node --experimental-wasm-threads src/index.js",
     "build": "run-p -l build:*",
     "build:js": "babel src -d dist",
     "build:image": "babel-node scripts/optimize-images.js",
@@ -13,7 +14,7 @@
     "prestart": "npm-run-all prestart:clean prestart:init",
     "start": "node --experimental-wasm-threads dist/index.js",
     "prestart:clean": "rimraf ../upload",
-    "prestart:init": "mkdirp ../upload/images ../upload/movies ../upload/sounds"
+    "prestart:init": "mkdirp ../upload/images_optimized ../upload/movies_optimized ../upload/sounds_optimized"
   },
   "dependencies": {
     "@babel/core": "7.16.0",
