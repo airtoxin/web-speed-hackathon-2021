@@ -2,11 +2,12 @@
   "private": true,
   "license": "MPL-2.0",
   "scripts": {
-    "build": "yarn workspaces run build",
+    "build": "run-p build:*",
+    "build:workspaces": "yarn workspaces run build",
     "start": "yarn workspace @web-speed-hackathon-2021/server start",
-    "format": "prettier --ignore-path .gitignore --write .",
     "dev": "run-p --print-label start dev:client",
-    "dev:client": "yarn workspace @web-speed-hackathon-2021/client develop"
+    "dev:client": "yarn workspace @web-speed-hackathon-2021/client develop",
+    "format": "prettier --ignore-path .gitignore --write ."
   },
   "workspaces": [
     "client",
