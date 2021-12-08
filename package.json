@@ -4,7 +4,9 @@
   "scripts": {
     "build": "yarn workspaces run build",
     "start": "yarn workspace @web-speed-hackathon-2021/server start",
-    "format": "prettier --ignore-path .gitignore --write ."
+    "format": "prettier --ignore-path .gitignore --write .",
+    "dev": "run-p --print-label start dev:client",
+    "dev:client": "yarn workspace @web-speed-hackathon-2021/client develop"
   },
   "workspaces": [
     "client",
@@ -14,6 +16,7 @@
     "node": "16.x.x"
   },
   "devDependencies": {
-    "prettier": "^2.5.1"
+    "npm-run-all": "4.1.5",
+    "prettier": "2.5.1"
   }
 }
