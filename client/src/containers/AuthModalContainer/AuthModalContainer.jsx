@@ -1,8 +1,8 @@
-import React from 'react';
+import React from "react";
 
-import { AuthModalPage } from '../../components/auth_modal/AuthModalPage';
-import { Modal } from '../../components/modal/Modal';
-import { sendJSON } from '../../utils/fetchers';
+import { AuthModalPage } from "../../components/auth_modal/AuthModalPage";
+import { Modal } from "../../components/modal/Modal";
+import { sendJSON } from "../../utils/fetchers";
 
 /**
  * @typedef {object} Props
@@ -23,11 +23,11 @@ const AuthModalContainer = ({ onRequestCloseModal, onUpdateActiveUser }) => {
     async ({ type, ...params }) => {
       try {
         setIsLoading(true);
-        if (type === 'signin') {
-          const user = await sendJSON('/api/v1/signin', params);
+        if (type === "signin") {
+          const user = await sendJSON("/api/v1/signin", params);
           onUpdateActiveUser(user);
-        } else if (type === 'signup') {
-          const user = await sendJSON('/api/v1/signup', params);
+        } else if (type === "signup") {
+          const user = await sendJSON("/api/v1/signup", params);
           onUpdateActiveUser(user);
         }
         onRequestCloseModal();
@@ -37,7 +37,7 @@ const AuthModalContainer = ({ onRequestCloseModal, onUpdateActiveUser }) => {
         setIsLoading(false);
       }
     },
-    [onRequestCloseModal, onUpdateActiveUser],
+    [onRequestCloseModal, onUpdateActiveUser]
   );
 
   return (

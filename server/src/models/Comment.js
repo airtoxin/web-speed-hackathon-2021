@@ -1,7 +1,7 @@
-import { DataTypes } from 'sequelize';
-import { ulid } from 'ulid';
+import { DataTypes } from "sequelize";
+import { ulid } from "ulid";
 
-import { sequelize } from '../sequelize';
+import { sequelize } from "../sequelize";
 
 /**
  * @typedef {object} CommentAttributes
@@ -16,7 +16,7 @@ import { sequelize } from '../sequelize';
 
 /** @type {import('sequelize').ModelCtor<CommentModel>} */
 const Comment = sequelize.define(
-  'Comment',
+  "Comment",
   {
     id: {
       allowNull: false,
@@ -32,18 +32,18 @@ const Comment = sequelize.define(
   {
     defaultScope: {
       attributes: {
-        exclude: ['userId', 'postId'],
+        exclude: ["userId", "postId"],
       },
       include: [
         {
-          association: 'user',
-          attributes: { exclude: ['profileImageId'] },
-          include: { association: 'profileImage' },
+          association: "user",
+          attributes: { exclude: ["profileImageId"] },
+          include: { association: "profileImage" },
         },
       ],
       order: [['id', 'ASC']],
     },
-  },
+  }
 );
 
 export { Comment };

@@ -1,8 +1,8 @@
-import http from 'http';
+import http from "http";
 
-import { app } from './app';
-import { insertSeeds } from './seeds';
-import { sequelize } from './sequelize';
+import { app } from "./app";
+import { insertSeeds } from "./seeds";
+import { sequelize } from "./sequelize";
 
 async function main() {
   const server = http.createServer(app);
@@ -14,7 +14,7 @@ async function main() {
   });
   await insertSeeds();
 
-  server.listen(Number(process.env.PORT || 3000), '0.0.0.0', () => {
+  server.listen(Number(process.env.PORT || 3000), "0.0.0.0", () => {
     const address = server.address();
     console.log(`Listening on ${address.address}:${address.port}`);
   });

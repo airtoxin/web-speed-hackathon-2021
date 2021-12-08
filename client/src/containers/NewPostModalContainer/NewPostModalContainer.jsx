@@ -1,9 +1,9 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import React from "react";
+import { useNavigate } from "react-router-dom";
 
-import { Modal } from '../../components/modal/Modal';
-import { NewPostModalPage } from '../../components/new_post_modal/NewPostModalPage';
-import { sendFile, sendJSON } from '../../utils/fetchers';
+import { Modal } from "../../components/modal/Modal";
+import { NewPostModalPage } from "../../components/new_post_modal/NewPostModalPage";
+import { sendFile, sendJSON } from "../../utils/fetchers";
 
 /**
  * @param {object} params
@@ -15,13 +15,17 @@ import { sendFile, sendJSON } from '../../utils/fetchers';
  */
 async function sendNewPost({ images, movie, sound, text }) {
   const payload = {
-    images: images ? await Promise.all(images.map((image) => sendFile('/api/v1/images', image))) : [],
-    movie: movie ? await sendFile('/api/v1/movies', movie) : undefined,
-    sound: sound ? await sendFile('/api/v1/sounds', sound) : undefined,
+    images: images
+      ? await Promise.all(
+          images.map((image) => sendFile("/api/v1/images", image))
+        )
+      : [],
+    movie: movie ? await sendFile("/api/v1/movies", movie) : undefined,
+    sound: sound ? await sendFile("/api/v1/sounds", sound) : undefined,
     text,
   };
 
-  return sendJSON('/api/v1/posts', payload);
+  return sendJSON("/api/v1/posts", payload);
 }
 
 /**
@@ -53,7 +57,7 @@ const NewPostModalContainer = ({ onRequestCloseModal }) => {
         setIsLoading(false);
       }
     },
-    [onRequestCloseModal, navigate],
+    [onRequestCloseModal, navigate]
   );
 
   return (

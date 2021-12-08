@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 /**
  * @typedef {object} Props
@@ -25,16 +25,22 @@ const AspectRatioBox = ({ aspectHeight, aspectWidth, children }) => {
     setTimeout(() => calcStyle(), 500);
 
     // ウィンドウサイズが変わるたびに計算する
-    window.addEventListener('resize', calcStyle, { passive: false });
+    window.addEventListener("resize", calcStyle, { passive: false });
     return () => {
-      window.removeEventListener('resize', calcStyle);
+      window.removeEventListener("resize", calcStyle);
     };
   }, [aspectHeight, aspectWidth]);
 
   return (
-    <div ref={ref} className="relative w-full h-1" style={{ height: clientHeight }}>
+    <div
+      ref={ref}
+      className="relative w-full h-1"
+      style={{ height: clientHeight }}
+    >
       {/* 高さが計算できるまで render しない */}
-      {clientHeight !== 0 ? <div className="absolute inset-0">{children}</div> : null}
+      {clientHeight !== 0 ? (
+        <div className="absolute inset-0">{children}</div>
+      ) : null}
     </div>
   );
 };

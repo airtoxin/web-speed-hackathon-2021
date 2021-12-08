@@ -1,4 +1,4 @@
-import sharp from 'sharp';
+import sharp from "sharp";
 
 /**
  * @param {Buffer} buffer
@@ -11,11 +11,11 @@ import sharp from 'sharp';
 async function convertImage(buffer, options) {
   return sharp(buffer)
     .resize({
-      fit: 'cover',
+      fit: "cover",
       height: options.height,
       width: options.width,
     })
-    .toFormat(options.extension ?? 'jpeg')
+    .toFormat(options.extension ?? "jpeg")
     .toBuffer();
 }
 

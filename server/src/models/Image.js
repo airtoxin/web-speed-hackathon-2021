@@ -1,6 +1,6 @@
-import { DataTypes, Sequelize } from 'sequelize';
+import { DataTypes, Sequelize } from "sequelize";
 
-import { sequelize } from '../sequelize';
+import { sequelize } from "../sequelize";
 
 /**
  * @typedef {object} ImageAttributes
@@ -13,10 +13,10 @@ import { sequelize } from '../sequelize';
  */
 
 /** @type {import('sequelize').ModelCtor<ImageModel>} */
-const Image = sequelize.define('Image', {
+const Image = sequelize.define("Image", {
   alt: {
     allowNull: false,
-    defaultValue: '',
+    defaultValue: "",
     type: DataTypes.STRING,
   },
   id: {

@@ -1,7 +1,7 @@
-import { DataTypes } from 'sequelize';
-import { ulid } from 'ulid';
+import { DataTypes } from "sequelize";
+import { ulid } from "ulid";
 
-import { sequelize } from '../sequelize';
+import { sequelize } from "../sequelize";
 
 /**
  * @typedef {object} PostAttributes
@@ -16,7 +16,7 @@ import { sequelize } from '../sequelize';
 
 /** @type {import('sequelize').ModelCtor<PostModel>} */
 const Post = sequelize.define(
-  'Post',
+  "Post",
   {
     id: {
       allowNull: false,
@@ -32,27 +32,27 @@ const Post = sequelize.define(
   {
     defaultScope: {
       attributes: {
-        exclude: ['userId', 'movieId', 'soundId'],
+        exclude: ["userId", "movieId", "soundId"],
       },
       include: [
         {
-          association: 'user',
-          attributes: { exclude: ['profileImageId'] },
-          include: { association: 'profileImage' },
+          association: "user",
+          attributes: { exclude: ["profileImageId"] },
+          include: { association: "profileImage" },
         },
         {
-          association: 'images',
+          association: "images",
           through: { attributes: [] },
         },
-        { association: 'movie' },
-        { association: 'sound' },
+        { association: "movie" },
+        { association: "sound" },
       ],
       order: [
         ['id', 'DESC'],
         ['images', 'createdAt', 'ASC'],
       ],
     },
-  },
+  }
 );
 
 export { Post };

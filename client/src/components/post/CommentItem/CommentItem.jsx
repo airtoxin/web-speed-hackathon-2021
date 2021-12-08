@@ -1,8 +1,8 @@
-import moment from 'moment';
-import React from 'react';
-import { Link } from 'react-router-dom';
+import moment from "moment";
+import React from "react";
+import { Link } from "react-router-dom";
 
-import { getProfileImagePath } from '../../../utils/get_path';
+import { getProfileImagePath } from "../../../utils/get_path";
 
 /**
  * @typedef {object} Props
@@ -19,22 +19,33 @@ const CommentItem = ({ comment }) => {
             className="block w-8 h-8 bg-gray-300 border border-gray-300 rounded-full hover:opacity-75 overflow-hidden sm:w-12 sm:h-12"
             to={`/users/${comment.user.username}`}
           >
-            <img alt={comment.user.profileImage.alt} src={getProfileImagePath(comment.user.profileImage.id)} />
+            <img
+              alt={comment.user.profileImage.alt}
+              src={getProfileImagePath(comment.user.profileImage.id)}
+            />
           </Link>
         </div>
         <div className="flex-grow flex-shrink min-w-0">
           <p className="whitespace-nowrap text-xs overflow-hidden overflow-ellipsis">
-            <Link className="pr-1 text-gray-800 hover:underline font-bold" to={`/users/${comment.user.username}`}>
+            <Link
+              className="pr-1 text-gray-800 hover:underline font-bold"
+              to={`/users/${comment.user.username}`}
+            >
               {comment.user.name}
             </Link>
-            <Link className="pr-1 text-gray-500 hover:underline" to={`/users/${comment.user.username}`}>
+            <Link
+              className="pr-1 text-gray-500 hover:underline"
+              to={`/users/${comment.user.username}`}
+            >
               @{comment.user.username}
             </Link>
           </p>
-          <p className="text-gray-800 text-sm leading-relaxed">{comment.text}</p>
+          <p className="text-gray-800 text-sm leading-relaxed">
+            {comment.text}
+          </p>
           <p className="text-gray-500 text-xs">
             <time dateTime={moment(comment.createdAt).toISOString()}>
-              {moment(comment.createdAt).locale('ja').format('LL')}
+              {moment(comment.createdAt).locale("ja").format("LL")}
             </time>
           </p>
         </div>

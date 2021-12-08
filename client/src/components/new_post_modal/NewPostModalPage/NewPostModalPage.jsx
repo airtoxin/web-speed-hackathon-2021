@@ -1,9 +1,9 @@
-import React from 'react';
+import React from "react";
 
-import { FontAwesomeIcon } from '../../foundation/FontAwesomeIcon';
-import { ModalErrorMessage } from '../../modal/ModalErrorMessage';
-import { ModalSubmitButton } from '../../modal/ModalSubmitButton';
-import { AttachFileInputButton } from '../AttachFileInputButton';
+import { FontAwesomeIcon } from "../../foundation/FontAwesomeIcon";
+import { ModalErrorMessage } from "../../modal/ModalErrorMessage";
+import { ModalSubmitButton } from "../../modal/ModalSubmitButton";
+import { AttachFileInputButton } from "../AttachFileInputButton";
 
 const MAX_UPLOAD_BYTES_LIMIT = 10 * 1024 * 1024;
 
@@ -26,7 +26,12 @@ const MAX_UPLOAD_BYTES_LIMIT = 10 * 1024 * 1024;
 /** @type {React.VFC<Props>} */
 const NewPostModalPage = ({ hasError, isLoading, onResetError, onSubmit }) => {
   /** @type {[SubmitParams, (params: SubmitParams) => SubmitParams]} */
-  const [params, setParams] = React.useState({ images: [], movie: undefined, sound: undefined, text: '' });
+  const [params, setParams] = React.useState({
+    images: [],
+    movie: undefined,
+    sound: undefined,
+    text: "",
+  });
 
   const [hasFileError, setHasFileError] = React.useState(false);
 
@@ -94,12 +99,15 @@ const NewPostModalPage = ({ hasError, isLoading, onResetError, onSubmit }) => {
       onResetError();
       onSubmit(params);
     },
-    [params, onSubmit, onResetError],
+    [params, onSubmit, onResetError]
   );
 
   return (
     <section>
-      <form className="flex flex-col items-center w-full" onSubmit={handleSubmit}>
+      <form
+        className="flex flex-col items-center w-full"
+        onSubmit={handleSubmit}
+      >
         <textarea
           className="placeholder-gray-300 p-4 w-full h-24 border border-gray-300 rounded resize-none"
           onChange={handleChangeText}
@@ -126,13 +134,20 @@ const NewPostModalPage = ({ hasError, isLoading, onResetError, onSubmit }) => {
           />
         </p>
         <p className="mt-4">
-          <ModalSubmitButton disabled={isLoading || params.text === ''} loading={isLoading}>
+          <ModalSubmitButton
+            disabled={isLoading || params.text === ""}
+            loading={isLoading}
+          >
             投稿する
           </ModalSubmitButton>
         </p>
         <p className="mt-4">
           <ModalErrorMessage>
-            {hasFileError ? '10 MB より小さくしてください' : hasError ? '投稿ができませんでした' : null}
+            {hasFileError
+              ? "10 MB より小さくしてください"
+              : hasError
+              ? "投稿ができませんでした"
+              : null}
           </ModalErrorMessage>
         </p>
       </form>

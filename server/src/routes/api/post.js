@@ -1,30 +1,30 @@
-import Router from 'express-promise-router';
-import httpErrors from 'http-errors';
+import Router from "express-promise-router";
+import httpErrors from "http-errors";
 
-import { Comment, Post } from '../../models';
+import { Comment, Post } from "../../models";
 
 const router = Router();
 
-router.get('/posts', async (req, res) => {
+router.get("/posts", async (req, res) => {
   const posts = await Post.findAll({
     limit: req.query.limit,
     offset: req.query.offset,
   });
 
-  return res.status(200).type('application/json').send(posts);
+  return res.status(200).type("application/json").send(posts);
 });
 
-router.get('/posts/:postId', async (req, res) => {
+router.get("/posts/:postId", async (req, res) => {
   const post = await Post.findByPk(req.params.postId);
 
   if (post === null) {
     throw new httpErrors.NotFound();
   }
 
-  return res.status(200).type('application/json').send(post);
+  return res.status(200).type("application/json").send(post);
 });
 
-router.get('/posts/:postId/comments', async (req, res) => {
+router.get("/posts/:postId/comments", async (req, res) => {
   const posts = await Comment.findAll({
     limit: req.query.limit,
     offset: req.query.offset,
@@ -33,10 +33,10 @@ router.get('/posts/:postId/comments', async (req, res) => {
     },
   });
 
-  return res.status(200).type('application/json').send(posts);
+  return res.status(200).type("application/json").send(posts);
 });
 
-router.post('/posts', async (req, res) => {
+router.post("/posts", async (req, res) => {
   if (req.session.userId === undefined) {
     throw new httpErrors.Unauthorized();
   }
@@ -49,16 +49,16 @@ router.post('/posts', async (req, res) => {
     {
       include: [
         {
-          association: 'images',
+          association: "images",
           through: { attributes: [] },
         },
-        { association: 'movie' },
-        { association: 'sound' },
+        { association: "movie" },
+        { association: "sound" },
       ],
-    },
+    }
   );
 
-  return res.status(200).type('application/json').send(post);
+  return res.status(200).type("application/json").send(post);
 });
 
 export { router as postRouter };

@@ -3,7 +3,8 @@
   "license": "MPL-2.0",
   "scripts": {
     "build": "yarn workspaces run build",
-    "start": "yarn workspace @web-speed-hackathon-2021/server start"
+    "start": "yarn workspace @web-speed-hackathon-2021/server start",
+    "format": "prettier --ignore-path .gitignore --write ."
   },
   "workspaces": [
     "client",
@@ -11,5 +12,8 @@
   ],
   "engines": {
     "node": "16.x.x"
+  },
+  "devDependencies": {
+    "prettier": "^2.5.1"
   }
 }

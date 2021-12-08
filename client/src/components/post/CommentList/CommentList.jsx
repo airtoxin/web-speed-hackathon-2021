@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 
-import { CommentItem } from '../CommentItem';
+import { CommentItem } from "../CommentItem";
 
 /**
  * @typedef {object} Props

@@ -1,9 +1,9 @@
-import { Sequelize } from 'sequelize';
+import { Sequelize } from "sequelize";
 
-import { DATABASE_PATH } from './paths';
+import { DATABASE_PATH } from "./paths";
 
 const sequelize = new Sequelize({
-  dialect: 'sqlite',
+  dialect: "sqlite",
   logging: false,
   storage: DATABASE_PATH,
 });
