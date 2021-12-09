@@ -1,4 +1,3 @@
-import moment from "moment";
 import React from "react";
 import { Link } from "react-router-dom";
 
@@ -6,6 +5,7 @@ import { getProfileImagePath } from "../../../utils/get_path";
 import { ImageArea } from "../../post/ImageArea";
 import { MovieArea } from "../../post/MovieArea";
 import { SoundArea } from "../../post/SoundArea";
+import { formatDate } from "../../../utils/format";
 
 /**
  * @typedef {object} Props
@@ -14,6 +14,8 @@ import { SoundArea } from "../../post/SoundArea";
 
 /** @type {React.VFC<Props>} */
 const PostItem = ({ post }) => {
+  const date = React.useMemo(() => new Date(post.createdAt), [post.createdAt]);
+
   return (
     <article className="px-1 sm:px-4">
       <div className="pb-4 pt-4 px-4 border-b border-gray-300">
@@ -70,9 +72,7 @@ const PostItem = ({ post }) => {
               className="text-gray-500 hover:underline"
               to={`/posts/${post.id}`}
             >
-              <time dateTime={moment(post.createdAt).toISOString()}>
-                {moment(post.createdAt).locale("ja").format("LL")}
-              </time>
+              <time dateTime={date.toISOString()}>{formatDate(date)}</time>
             </Link>
           </p>
         </div>

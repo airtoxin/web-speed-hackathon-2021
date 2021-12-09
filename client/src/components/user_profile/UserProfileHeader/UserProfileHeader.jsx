@@ -1,9 +1,9 @@
 import FastAverageColor from "fast-average-color";
-import moment from "moment";
 import React from "react";
 
 import { getProfileImagePath } from "../../../utils/get_path";
 import { FontAwesomeIcon } from "../../foundation/FontAwesomeIcon";
+import { formatDate } from "../../../utils/format";
 
 /**
  * @typedef {object} Props
@@ -22,6 +22,8 @@ const UserProfileHeader = ({ user }) => {
     setAverageColor(rgb);
     fac.destroy();
   }, []);
+
+  const date = React.useMemo(() => new Date(user.createdAt), [user.createdAt]);
 
   return (
     <header className="relative">
@@ -46,9 +48,7 @@ const UserProfileHeader = ({ user }) => {
             <FontAwesomeIcon iconType="calendar-alt" styleType="regular" />
           </span>
           <span>
-            <time dateTime={moment(user.createdAt).toISOString()}>
-              {moment(user.createdAt).locale("ja").format("LL")}
-            </time>
+            <time dateTime={date.toISOString()}>{formatDate(date)}</time>
             からサービスを利用しています
           </span>
         </p>
