@@ -4,7 +4,13 @@
  * @returns {Promise<T>}
  */
 async function fetchJSON(url) {
-  return fetch(url).then((res) => res.json());
+  const result = await $.ajax({
+    async: true,
+    dataType: "json",
+    method: "GET",
+    url,
+  });
+  return result;
 }
 
 /**
