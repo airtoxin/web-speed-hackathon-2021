@@ -10,7 +10,7 @@ import sharp from "sharp";
 async function convertImage(buffer, options) {
   return sharp(buffer)
     .resize({
-      fit: "cover",
+      fit: "outside",
       height: options.height,
       width: options.width,
     })
