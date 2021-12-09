@@ -1,16 +1,15 @@
+const handleResponse = (res) => {
+  if (!res.ok) throw new Error(`request failed`);
+  return res.json();
+};
+
 /**
  * @template T
  * @param {string} url
  * @returns {Promise<T>}
  */
 async function fetchJSON(url) {
-  const result = await $.ajax({
-    async: true,
-    dataType: "json",
-    method: "GET",
-    url,
-  });
-  return result;
+  return fetch(url).then(handleResponse);
 }
 
 /**
@@ -20,18 +19,13 @@ async function fetchJSON(url) {
  * @returns {Promise<T>}
  */
 async function sendFile(url, file) {
-  const result = await $.ajax({
-    async: true,
-    data: file,
-    dataType: "json",
+  return fetch(url, {
+    method: "post",
     headers: {
       "Content-Type": "application/octet-stream",
     },
-    method: "POST",
-    processData: false,
-    url,
-  });
-  return result;
+    body: file,
+  }).then(handleResponse);
 }
 
 /**
@@ -41,18 +35,13 @@ async function sendFile(url, file) {
  * @returns {Promise<T>}
  */
 async function sendJSON(url, data) {
-  const result = await $.ajax({
-    async: true,
-    data: JSON.stringify(data),
-    dataType: "json",
+  return fetch(url, {
+    method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    method: "POST",
-    processData: false,
-    url,
-  });
-  return result;
+    body: JSON.stringify(data),
+  }).then(handleResponse);
 }
 
 export { fetchJSON, sendFile, sendJSON };
