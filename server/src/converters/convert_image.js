@@ -14,7 +14,7 @@ async function convertImage(buffer, options) {
       height: options.height,
       width: options.width,
     })
-    .jpeg({ mozjpeg: true })
+    .webp()
     .toBuffer();
 }
 
