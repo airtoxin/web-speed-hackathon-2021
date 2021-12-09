@@ -1,5 +1,4 @@
 import React from "react";
-import { Helmet } from "react-helmet";
 import { useParams } from "react-router-dom";
 
 import { InfiniteScroll } from "../../components/foundation/InfiniteScroll";
@@ -22,13 +21,11 @@ const UserProfileContainer = () => {
     fetchJSON
   );
 
-  if (isLoadingUser) {
-    return (
-      <Helmet>
-        <title>読込中 - CAwitter</title>
-      </Helmet>
-    );
-  }
+  React.useEffect(() => {
+    document.title = isLoadingUser
+      ? "読込中 - CAwitter"
+      : `${user?.name} さんのタイムライン - CAwitter`;
+  }, [isLoadingUser, user?.name]);
 
   if (user === null) {
     return <NotFoundContainer />;
@@ -36,9 +33,6 @@ const UserProfileContainer = () => {
 
   return (
     <InfiniteScroll fetchMore={fetchMore} items={posts}>
-      <Helmet>
-        <title>{user.name} さんのタイムライン - CAwitter</title>
-      </Helmet>
       <UserProfilePage timeline={posts} user={user} />
     </InfiniteScroll>
   );

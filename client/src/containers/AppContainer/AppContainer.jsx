@@ -1,5 +1,4 @@
 import React from "react";
-import { Helmet } from "react-helmet";
 import { Route, Routes, useLocation } from "react-router-dom";
 
 import { AppPage } from "../../components/application/AppPage";
@@ -44,13 +43,9 @@ const AppContainer = () => {
     []
   );
 
-  if (isLoading) {
-    return (
-      <Helmet>
-        <title>読込中 - CAwitter</title>
-      </Helmet>
-    );
-  }
+  React.useEffect(() => {
+    document.title = isLoading ? "読込中 - CAwitter" : "CAwitter";
+  }, [isLoading]);
 
   return (
     <>
