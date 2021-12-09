@@ -1,7 +1,4 @@
 import React from "react";
-
-import { useFetch } from "../../../hooks/use_fetch";
-import { fetchBinary } from "../../../utils/fetchers";
 import { getSoundPath } from "../../../utils/get_path";
 import { AspectRatioBox } from "../AspectRatioBox";
 import { FontAwesomeIcon } from "../FontAwesomeIcon";
@@ -16,11 +13,7 @@ import { SoundWaveSVG } from "../SoundWaveSVG";
  * @type {React.VFC<Props>}
  */
 const SoundPlayer = ({ sound }) => {
-  const { data, isLoading } = useFetch(getSoundPath(sound.id), fetchBinary);
-
-  const blobUrl = React.useMemo(() => {
-    return data !== null ? URL.createObjectURL(new Blob([data])) : null;
-  }, [data]);
+  const src = getSoundPath(sound.id);
 
   const [currentTimeRatio, setCurrentTimeRatio] = React.useState(0);
   /** @type {React.ReactEventHandler<HTMLAudioElement>} */
@@ -43,10 +36,6 @@ const SoundPlayer = ({ sound }) => {
     });
   }, []);
 
-  if (isLoading || data === null || blobUrl === null) {
-    return null;
-  }
-
   return (
     <div className="flex items-center justify-center w-full h-full bg-gray-300">
       <audio
@@ -55,7 +44,7 @@ const SoundPlayer = ({ sound }) => {
         onTimeUpdate={handleTimeUpdate}
         preload="none"
       >
-        <source src={blobUrl} type="audio/mp3" />
+        <source src={src} type="audio/mp3" />
       </audio>
       <div className="p-2">
         <button
@@ -85,7 +74,7 @@ const SoundPlayer = ({ sound }) => {
               <div
                 className="absolute inset-0 w-full h-full bg-gray-300 opacity-75"
                 style={{ left: `${currentTimeRatio * 100}%` }}
-              ></div>
+              />
             </div>
           </AspectRatioBox>
         </div>
