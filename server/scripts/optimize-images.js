@@ -4,7 +4,10 @@ import { convertImage } from "../src/converters/convert_image";
 
 const main = async () => {
   await Promise.all([
-    compressFiles(path.join(__dirname, "../../public/images")),
+    compressFiles(path.join(__dirname, "../../public/images"), {
+      width: 600,
+      height: 600,
+    }),
     compressFiles(path.join(__dirname, "../../public/images/profiles"), {
       width: 128,
       height: 128,
