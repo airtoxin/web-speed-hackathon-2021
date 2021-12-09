@@ -1,5 +1,3 @@
-import { gzip } from "pako";
-
 /**
  * @template T
  * @param {string} url
@@ -43,16 +41,11 @@ async function sendFile(url, file) {
  * @returns {Promise<T>}
  */
 async function sendJSON(url, data) {
-  const jsonString = JSON.stringify(data);
-  const uint8Array = new TextEncoder().encode(jsonString);
-  const compressed = gzip(uint8Array);
-
   const result = await $.ajax({
     async: true,
-    data: compressed,
+    data: JSON.stringify(data),
     dataType: "json",
     headers: {
-      "Content-Encoding": "gzip",
       "Content-Type": "application/json",
     },
     method: "POST",
@@ -62,4 +55,4 @@ async function sendJSON(url, data) {
   return result;
 }
 
-export { fetchBinary, fetchJSON, sendFile, sendJSON };
+export { fetchJSON, sendFile, sendJSON };
